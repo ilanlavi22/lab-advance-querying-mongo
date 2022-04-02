@@ -169,8 +169,14 @@ db.companies.find({}, {name:1, founded_year:1}).sort({founded_year:1})
 ### 15. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `acquisition price` in a descending order. Limit the search to 10 documents.
 
 ```
-{founded_day: {$gte:7}}
-{"acquisition.price_amount":-1}
+query: {founded_day: {$gte:7}}
+
+sort: {"acquisition.price_amount":-1}
+
+limit: 10
+
+shell:
+db.companies.find({founded_day:{$gte:7}}).sort({"acquisition.price_amount":-1}).limit(10)
 
 ```
 
